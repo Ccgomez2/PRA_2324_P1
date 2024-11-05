@@ -1,5 +1,5 @@
 #include <stdexcept>
-#include <iostream>
+#include <ostream>
 #include "List.h"
 
 using namespace std;
@@ -35,15 +35,15 @@ class ListArray : public List<T> {
                 }
 
                 void insert(int pos, T elem) override {
-                        if (pos < 0 || pos > n) {  // Debe ser pos <= n, no max
-                                 throw out_of_range("Posición fuera de rango");
+                        if (pos < 0 || pos > n) {  
+                                 throw out_of_range("Posición inválida");
                         }
 
                         if (n >= max) {
                                 resize(max * 2);
                         }
 
-                        for (int i = n; i > pos; --i) {  // Cambié max por n
+                        for (int i = n; i > pos; --i) {
                                 arr[i] = arr[i - 1];
                         }
 
@@ -63,8 +63,8 @@ class ListArray : public List<T> {
 
                 // Eliminar un elemento
                 T remove(int pos) override {
-                        if (pos < 0 || pos >= n) {  // Cambié max por n
-                                throw out_of_range("Posición fuera de rango");
+                        if (pos < 0 || pos >= n) {
+                                throw out_of_range("Posición inválida");
                         }
 
                         T removedValue = arr[pos];
@@ -83,7 +83,7 @@ class ListArray : public List<T> {
                 // Obtener un elemento
                 T get(int pos) override {
                         if (pos < 0 || pos >= n) {
-                                throw out_of_range("Posición fuera de rango");
+                                throw out_of_range("Posición inválida");
                         }
                         return arr[pos];
                 }
@@ -92,7 +92,7 @@ class ListArray : public List<T> {
                 int search(T elem) override {
                         for (int i = 0; i < n; ++i) {
                                 if (arr[i] == elem) {
-                                        return i;  // Retornar la posición si se encuentra
+                                        return i; 
                                 }
                         }
                         return -1;
@@ -111,7 +111,7 @@ class ListArray : public List<T> {
                 // Sobrecarga del operador []
                 T operator[](int pos) {
                         if (pos < 0 || pos >= n) {
-                                throw out_of_range("Posición fuera de rango");
+                                throw out_of_range("Posición inválida");
                         }
                         return arr[pos];
                 }
